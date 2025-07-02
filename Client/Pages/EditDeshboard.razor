@@ -1,0 +1,73 @@
+@page "/edit-deshboard"
+@using Radzen
+@using Radzen.Blazor
+@attribute [Authorize]
+
+<PageTitle>Edit Deshboard </PageTitle>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Item no longer available." Visible="@(!canEdit)" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" style="margin-bottom: 20px" Text="Close" Visible="@(!canEdit)" Click="@CancelButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+<RadzenRow>
+    <RadzenColumn SizeMD="9">
+    <RadzenLabel style="font-weight: bold" Text="Another user has made conflicting changes to one or more of the fields you have modified. Please reload." Visible="@hasChanges" />
+    </RadzenColumn>
+    <RadzenColumn SizeMD="3">
+    <RadzenButton ButtonStyle="ButtonStyle.Secondary" Icon="autorenew" style="margin-bottom: 20px" Text="Reload" Visible="@hasChanges" Click="@ReloadButtonClick" />
+    </RadzenColumn>
+</RadzenRow>
+
+    <RadzenColumn SizeMD=12>
+        <RadzenAlert Shade="Shade.Lighter" Variant="Variant.Flat" Size="AlertSize.Small" AlertStyle="AlertStyle.Danger" Visible="@errorVisible">Cannot save Deshboard</RadzenAlert>
+        <RadzenTemplateForm TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Data="@(deshboard)" Visible="@(deshboard != null && canEdit)" Submit="@FormSubmit">
+          <RadzenStack>
+            <RadzenFormField Text="Trend Number" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenNumeric style="display: block; width: 100%" @bind-Value="@(deshboard.TrendNumber)" Name="TrendNumber" />
+                  </ChildContent>    
+                  <Helper>
+                    <RadzenRequiredValidator Component="TrendNumber" Text="TrendNumber is required" />
+                  </Helper>
+            </RadzenFormField>
+            <RadzenFormField Text="Start Date" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(deshboard.StartDate)" Name="StartDate" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="End Date" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenDatePicker DateFormat="dd/MM/yyyy" style="display: block; width: 100%" @bind-Value="@(deshboard.EndDate)" Name="EndDate" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Summary" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(deshboard.Summary)" Name="Summary" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Trend Description" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(deshboard.TrendDescription)" Name="TrendDescription" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField Text="Address" Variant="Variant.Text">
+                  <ChildContent>
+                    <RadzenTextBox style="display: block; width: 100%" @bind-Value="@(deshboard.Address)" Name="Address" />
+              </ChildContent>
+            </RadzenFormField>
+            <RadzenFormField  Variant="Variant.Text">
+                  <ChildContent>
+                     <RadzenFileInput TValue="string" Accept="upload/image" Placeholder="File Upload" @bind-Value="@deshboard.FileUpload" MaxWidth="50" MaxHeight="50" ImageStyle="width:100px;" Name="pdf_file"></RadzenFileInput>
+              </ChildContent>
+            </RadzenFormField>
+          </RadzenStack>
+          <RadzenStack style="margin-top:1rem;" Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                    <RadzenButton ButtonStyle="ButtonStyle.Primary" ButtonType="ButtonType.Submit" Icon="save" Text="Save" Variant="Variant.Flat" />
+                    <RadzenButton ButtonStyle="ButtonStyle.Light" Text="Cancel" Variant="Variant.Flat" Click="@CancelButtonClick"  />
+          </RadzenStack>
+        </RadzenTemplateForm>
+    </RadzenColumn>
+

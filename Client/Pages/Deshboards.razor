@@ -1,0 +1,70 @@
+@page "/deshboards"
+@using Radzen
+@using Radzen.Blazor
+@attribute [Authorize]
+
+
+<PageTitle>Deshboard Diplay</PageTitle>
+<RadzenStack>
+    <RadzenRow AlignItems="AlignItems.Center">
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenText Text="Deshboard Database Management" TextStyle="TextStyle.H3" TagName="TagName.H1" style="margin: 0" />
+        </RadzenColumn>
+        <RadzenColumn Size="12" SizeMD="6">
+            <RadzenStack Orientation="Orientation.Horizontal" AlignItems="AlignItems.Center" JustifyContent="JustifyContent.End" Gap="0.5rem">
+                <RadzenSplitButton Icon="get_app" Text="Export" Click="@ExportClick" Variant="Variant.Flat" Shade="Shade.Lighter">
+                    <RadzenSplitButtonItem Text="Excel" Value="xlsx" />
+                    <RadzenSplitButtonItem Text="CSV" Value="csv" />
+                </RadzenSplitButton>
+                <RadzenButton Icon="add_circle_outline" Text="Add" Click="@AddButtonClick" Variant="Variant.Flat" />
+            </RadzenStack>
+        </RadzenColumn>
+    </RadzenRow>
+    <RadzenTextBox Placeholder="Search ..." style="display: block; width: 100%; border-radius: 10px" @oninput="@Search" aria-label="Search by all string columns" />
+    <RadzenRow>
+      <RadzenColumn SizeMD=12>
+        <RadzenDataGrid @ref="grid0" ColumnWidth="200px"   AllowFiltering="true" FilterMode="FilterMode.Advanced" AllowPaging="true" AllowSorting="true" ShowPagingSummary="true" PageSizeOptions=@(new int[]{5, 10, 20, 30})
+            Data="@(deshboards)" LoadData="@Grid0LoadData" Count="@count" TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" RowDoubleClick="@EditRow" AllowCompositeDataCells="true">
+            <Columns>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="id" Title="id" SortOrder="Radzen.SortOrder.Ascending" SortProperty="TrendNumber">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="TrendNumber" Title="Trend Number">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="StartDate" Title="Start Date">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="EndDate" Title="End Date">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="Summary" Title="Summary">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="TrendDescription" Title="Trend Description">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Property="Address" Title="Address">
+                </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard"  Title="Actions">
+           
+              <Template Context="item">
+                <a href="@item.FileUpload" target="_blank" style="text-decoration: none;">
+                    <RadzenIcon Icon="picture_as_pdf" Style="color: red; font-size: 50px; width: 83px; text-align: center; margin-left: 50px" />
+                </a>
+            </Template>
+        </RadzenDataGridColumn>
+                <RadzenDataGridColumn TItem="EskomAdmin.Server.Models.Deshboard.Deshboard" Filterable="false" Sortable="false" Width="70px" TextAlign="TextAlign.Center">
+                    <Template Context="deshboard">
+
+                        <RadzenButton ButtonStyle="ButtonStyle.Danger" Icon="delete" Size="ButtonSize.Medium"
+                            Shade="Shade.Lighter" Variant="Variant.Flat"
+                            Click=@(args => GridDeleteButtonClick(args, deshboard)) @onclick:stopPropagation="true" />
+                    </Template>
+                </RadzenDataGridColumn>
+            </Columns>
+
+        </RadzenDataGrid>
+
+    </RadzenColumn>
+  </RadzenRow>
+</RadzenStack>
+
+@code{
+
+
+}

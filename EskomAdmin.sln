@@ -1,0 +1,33 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.0.0
+MinimumVisualStudioVersion = 17.0.0.0
+
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EskomAdmin.Server", "Server\EskomAdmin.Server.csproj", "{930D73BB-E437-42C3-8AAE-3F6EF42A7828}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EskomAdmin.Client", "Client\EskomAdmin.Client.csproj", "{3878B834-BFFA-4CE9-AAB9-70A1CA3ECCE1}"
+EndProject
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+
+		{3878B834-BFFA-4CE9-AAB9-70A1CA3ECCE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3878B834-BFFA-4CE9-AAB9-70A1CA3ECCE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3878B834-BFFA-4CE9-AAB9-70A1CA3ECCE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3878B834-BFFA-4CE9-AAB9-70A1CA3ECCE1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{930D73BB-E437-42C3-8AAE-3F6EF42A7828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{930D73BB-E437-42C3-8AAE-3F6EF42A7828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{930D73BB-E437-42C3-8AAE-3F6EF42A7828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{930D73BB-E437-42C3-8AAE-3F6EF42A7828}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A03E2EBA-D4D1-4D74-A1EF-506E50F76D41}
+	EndGlobalSection
+EndGlobal

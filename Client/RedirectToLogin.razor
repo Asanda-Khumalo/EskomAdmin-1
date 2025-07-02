@@ -1,0 +1,19 @@
+@inject NavigationManager NavigationManager
+@using Radzen
+@using Radzen.Blazor
+@code {
+    [Parameter]
+    public bool IsAuthenticated { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!IsAuthenticated)
+        {
+            NavigationManager.NavigateTo($"Account/Login?redirectUri={NavigationManager.Uri}", true);
+        }
+        else
+        {
+            NavigationManager.NavigateTo("Unauthorized", true);
+        }
+    }
+}
